@@ -2,9 +2,12 @@
 
 {% block content %}
 <h1>New Post</h1>
-<form method="post" class="post-form">
+<form method="post" class="post-form row">
     {% csrf_token%}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">SAVE ME..</button>
+    <div class="col-md-8 offset-md-2">
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">SAVE ME..</button>
+    </div>
+
 </form>
 {% endblock content %}
