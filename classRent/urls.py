@@ -18,7 +18,6 @@ from django.urls import path, include
 from rent import views
 
 urlpatterns = [
-    path('', views.login),
     path('admin/', admin.site.urls),
     path('', include('rent.urls')),
 ]

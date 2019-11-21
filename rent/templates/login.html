@@ -16,7 +16,7 @@
                 <label class="form-control-label col-form-label">ID :</label>
             </div>
             <div class="col-10 px-0">
-                <input class="form-control" name="username" id="username" type="text">
+                <input class="form-control" name="username" id="username" type="text" autocomplete="off">
             </div>
         </div>
         <div class="col-12 d-flex justify-content-between px-0">
@@ -24,7 +24,7 @@
                 <label class="form-control-label col-form-label">PW :</label>
             </div>
             <div class="col-10 px-0">
-                <input class="form-control" name="password" id="password" type="password">
+                <input class="form-control" name="password" id="password" type="password" autocomplete="off">
             </div>
         </div>
         <div class="col-6 float-left px-0">
@@ -35,4 +35,7 @@
         </div>
     </div>
 </form>
+<div class="col-2 offset-5 px-0">
+    <a role="button" class="btn btn-sm btn-primary col-12" href="post">POST</a>
+</div>
 {% endblock content %}
