@@ -1,0 +1,38 @@
+{% extends "header.html" %}
+
+{% block title %}
+<h3>login page</h3>
+{% endblock title %}
+
+{% block content %}
+<div class="row d-flex justify-content-center">
+    <span class="h3">로그인</span>
+</div>
+<form class="row" method="POST">
+    {% csrf_token %}
+    <div class="col-2 offset-5 px-0 border">
+        <div class="col-12 d-flex justify-content-between px-0">
+            <div class="col-2 px-0 text-center">
+                <label class="form-control-label col-form-label">ID :</label>
+            </div>
+            <div class="col-10 px-0">
+                <input class="form-control">
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-between px-0">
+            <div class="col-2 px-0 text-center">
+                <label class="form-control-label col-form-label">PW :</label>
+            </div>
+            <div class="col-10 px-0">
+                <input class="form-control">
+            </div>
+        </div>
+        <div class="col-6 float-left px-0">
+            <a role="button" href="register" class="btn btn-primary col-12">회원가입</a>
+        </div>
+        <div class="col-6 float-right px-0">
+            <button class="btn btn-primary col-12" type="submit">로그인</button>
+        </div>
+    </div>
+</form>
+{% endblock content %}
