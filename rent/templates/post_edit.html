@@ -4,10 +4,9 @@
 <h1>New Post</h1>
 <form method="post" class="post-form row">
     {% csrf_token%}
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-12">
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">SAVE ME..</button>
+        <button type="submit" class="save btn btn-outline-dark">SAVE ME..</button>
     </div>
-
 </form>
 {% endblock content %}

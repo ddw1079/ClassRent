@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.contrib.auth import authenticate, login
 # Create your models here.
 
 
@@ -21,19 +22,18 @@ class Post(models.Model):
         return self.title
 
 
+def publish(self):
+    self.published_date = timezone.now()
+    self.save()
+
+
 class Room(models.Model):
     name = models.CharField(max_length=20)
     address = models.CharField(max_length=200)
 
 
-class User(models.Model):
-    userid = models.CharField(max_length=20)
-    userpw = models.CharField(max_length=40)
-
-
 class History(models.Model):
     address = models.ForeignKey(Room, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, max_length=20, on_delete=models.CASCADE)
     stime = models.DateTimeField()
     etime = models.DateTimeField()
 

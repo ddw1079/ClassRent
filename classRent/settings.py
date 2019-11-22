@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join('static'),
 )
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/post'
+LOGOUT_REDIRECT_URL = '/login'
