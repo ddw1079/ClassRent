@@ -20,16 +20,27 @@
     <p>{{ post.text|linebreaksbr }}</p>
     <hr>
     {% for comment in post.comments.all %}
-    <div class="comment">
-        <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
-        <p>{{ comment.text|linebreaks }}</p>
-    </div>
+        {% if user.is_authenticated or comment.approved_comment %}
+            <div class="comment">
+                <div class="date">
+                    {{ comment.created_date }}
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-outlined-dark" href="{% url 'comment_remove' pk=comment.pk %}"><i
+                                class="fas fa-eraser"></i></a>
+                        <a class="btn btn-outlined-dark" href="{% url 'comment_approve' pk=comment.pk %}"></a>
+                    {% endif %}
+                </div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% endif %}
     {% empty %}
-    <p>Congratulation! You can leave First Comment in this article!</p>
+        <p>Congratulation! You can leave First Comment in this article!</p>
     {% endfor %}
-    <a class="btn btn-outline-dark" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
 
+    {% if user.is_authenticated %}
+        <a class="btn btn-outline-dark" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
+    {% endif %}
 </div>
 
 {% endblock content %}

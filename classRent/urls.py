@@ -15,10 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import include, url
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
-
-from rent import views
 
 urlpatterns = [
     url('admin/', admin.site.urls),

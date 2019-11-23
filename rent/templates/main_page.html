@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col ">
+            <h4>강의실 위치 선택</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="col-4">
+                <select class="form-control" id="select-building">
+                    <option>건물</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <select class="form-control" id="select-floor">
+                    <option>층수</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <select class="select-room">
+                    <option>이름</option>
+                </select>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

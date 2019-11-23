@@ -21,7 +21,7 @@ def post_detail(request, pk):
 
 
 def main_page(request):
-    return render(request, 'base.html')
+    return render(request, 'index.html')
 
 
 @login_required
@@ -65,7 +65,7 @@ def add_comment_to_post(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'rent/add_comment_to_post.html', {'form': form})
+    return render(request, 'add_comment_to_post.html', {'form': form})
 
 
 @login_required
