@@ -1,14 +1,16 @@
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import auth
 
-from .models import Post
-from .forms import PostForm, CommentForm
+from .models import Post, Comment, Room
+from .forms import PostForm, CommentForm, RoomForm
 
 
 # Create your views here.
-
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -69,11 +71,26 @@ def add_comment_to_post(request, pk):
 
 
 @login_required
+def comment_approve(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('post_detail', pk=comment.post.pk)
+
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('post_detail', pk=comment.post.pk)
+
+
+@login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'post_draft_list.html', {'posts': posts})
 
 
+@login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
@@ -87,5 +104,34 @@ def post_remove(request, pk):
     return redirect('post_list')
 
 
+def registering(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+        else:
+            form = UserCreationForm()
+        return render(request, 'register.html', {'form': form})
+
+
 def rent(request):
     return render(request, 'rentClass.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
+def choose_room(request):
+    return render(request, 'choose_room.html')
+
+
+def choose_time(request, building, floor, room):
+    return render(request, 'choose_time.html')
+
+
+def check_reservation(request):
+    return render(request, 'check_reservation.html')

@@ -48,7 +48,8 @@ def approved_comments(self):
 
 class Room(models.Model):
     building = models.CharField(max_length=30)
-
+    floor = models.IntegerField()
+    name = models.CharField(max_length=30)
 
 
 class History(models.Model):

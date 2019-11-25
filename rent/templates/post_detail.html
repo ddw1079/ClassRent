@@ -24,10 +24,11 @@
             <div class="comment">
                 <div class="date">
                     {{ comment.created_date }}
+                    <a class="btn btn-outline-dark" href="{% url 'comment_remove' pk=comment.pk %}"><i
+                            class="fas fa-eraser"></i></a>
                     {% if not comment.approved_comment %}
-                        <a class="btn btn-outlined-dark" href="{% url 'comment_remove' pk=comment.pk %}"><i
-                                class="fas fa-eraser"></i></a>
-                        <a class="btn btn-outlined-dark" href="{% url 'comment_approve' pk=comment.pk %}"></a>
+                    <a class="btn btn-outline-dark" href="{% url 'comment_approve' pk=comment.pk %}"><i
+                            class="far fa-thumbs-up"></i></a>
                     {% endif %}
                 </div>
                 <strong>{{ comment.author }}</strong>
