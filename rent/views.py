@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.views.generic.base import View
 
 from .models import Post, Comment, Room
 from .forms import PostForm, CommentForm, RoomForm
@@ -129,7 +130,10 @@ def choose_room(request):
     return render(request, 'choose_room.html')
 
 
-def choose_time(request, building, floor, room):
+class ChooseTimeView(View):
+
+
+def choose_time(request):
     return render(request, 'choose_time.html')
 
 
