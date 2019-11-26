@@ -23,10 +23,6 @@ def post_detail(request, pk):
     return render(request, 'post_detail.html', {'post': post})
 
 
-def main_page(request):
-    return render(request, 'index.html')
-
-
 @login_required
 def post_new(request):
     if request.method == "POST":
@@ -128,9 +124,6 @@ def about(request):
 
 def choose_room(request):
     return render(request, 'choose_room.html')
-
-
-class ChooseTimeView(View):
 
 
 def choose_time(request):

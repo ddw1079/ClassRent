@@ -2,62 +2,105 @@
 
 {% block content %}
 
-<section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
-  <div class="w-100">
-    <h2 class="mb-5">Select Room</h2>
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+        <div class="w-100">
+            <h2 class="mb-5">Select Room</h2>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-start">
+                    <label class="col-form-label px-2" id="id_building">Building</label>
+                    <label class="col-form-label px-2"> > </label>
+                    <label class="col-form-label px-2" id="id_floor">Floor</label>
+                    <label class="col-form-label px-2"> > </label>
+                    <label class="col-form-label px-2" id="id_room">Room</label>
+                </div>
+            </div>
 
-    <form class="resume-item" method="get" action="{% url 'choose_time'%}">
-      <div class="row resume-content d-flex flex-column flex-md-row justify-content-between mb-5">
+            <form class="resume-item" method="get" onreset="resetHandler();" action="{# {% url 'choose_time' %} #}">
+                <div class="row resume-content d-flex flex-column flex-md-row mb-5">
 
-        <div class="col-md-4 col-sm-12 my-2">
-        <h3 class="mb-0">1. Select Building</h3>
-          <div class="col-12 px-0">
-            <select class="form-control form-control-sm">
-              <option>building 1</option>
-              <option>building 2</option>
-              <option>building 3</option>
-              <option>building 4</option>
-            </select>
-          </div>
-        </div>
+                    <div class="col-md-4 col-sm-12 my-2" id="building">
+                        <h3 class="mb-0">1. Select Building</h3>
+                        <div class="col-12 px-0">
+                            <select class="form-control form-control-sm" id="building_selector">
+                                <option></option>
+                                <option>Building 1</option>
+                                <option>Building 2</option>
+                                <option>Building 3</option>
+                                <option>Building 4</option>
+                            </select>
+                        </div>
+                    </div>
 
-        <div class="col-md-4 col-sm-12 my-2">
-          <h3 class="mb-0">2. Select floor</h3>
-          <div class="col-12 px-0">
-            <select class="form-control form-control-sm">
-              <option>B1</option>
-              <option>F1</option>
-              <option>F2</option>
-              <option>F3</option>
-            </select>
-          </div>
-        </div>
+                    <div class="col-md-4 col-sm-12 my-2" id="floor">
+                        <h3 class="mb-0">2. Select floor</h3>
+                        <div class="col-12 px-0">
+                            <select class="form-control form-control-sm" id="floor_selector">
+                                <option></option>
+                                <option>B1</option>
+                                <option>F1</option>
+                                <option>F2</option>
+                                <option>F3</option>
+                            </select>
+                        </div>
+                    </div>
 
-        <div class="col-md-4 col-sm-12 my-2">
-          <h3 class="mb-0">3. Select Class</h3>
-          <div class="col-12 px-0">
-            <select class="form-control form-control-sm">
-              <option>101</option>
-              <option>202</option>
-              <option>303</option>
-              <option>404</option>
-            </select>
-          </div>
+                    <div class="col-md-4 col-sm-12 my-2" id="room">
+                        <h3 class="mb-0">3. Select Room</h3>
+                        <div class="col-12 px-0">
+                            <select class="form-control form-control-sm" id="room_selector">
+                                <option></option>
+                                <option>101</option>
+                                <option>202</option>
+                                <option>303</option>
+                                <option>404</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex flex-column flex-md-row justify-content-end">
+                    <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
+                        <button type="reset" class="btn btn-secondary w-100">Reset</button>
+                    </div>
+                    <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
+                        <button type="submit" class="btn btn-primary w-100">다음</button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </div>
-      <div class="row d-flex flex-column flex-md-row justify-content-end">
-        <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
-          <button type="reset" class="btn btn-secondary w-100">Reset</button>
-        </div>
-        <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
-          <button type="submit" class="btn btn-primary w-100">다음</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
+    </section>
 
 <script>
+
+$(document).ready(function () {
+    $("#floor").hide();
+    $("#room").hide();
+});
+
+$("#building_selector").change(function () {
+    var text = $(this).val();
+    $("#id_building").text(text);
+    $("#floor").show();
+    $("#room").hide();
+});
+
+$("#floor_selector").change(function () {
+    var text = $(this).val();
+    $("#id_floor").text(text);
+    $("#room").show();
+});
+
+$("#room_selector").change(function () {
+   var text = $(this).val();
+   $("#id_room").text(text);
+});
+
+function resetHandler(){
+    $("#floor").hide();
+    $("#room").hide();
+    $("#id_building").text("Building");
+    $("#id_floor").text("Floor");
+    $("#id_room").text("Room");
+};
 
 </script>
 

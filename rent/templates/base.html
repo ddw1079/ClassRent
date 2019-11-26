@@ -20,12 +20,23 @@
 
   <!-- Custom styles for this template -->
   <link href="/static/css/resume.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="/static/js/resume.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
 </head>
 
 <body id="page-top">
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top sideNav">
     {% if user.is_authenticated %}
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -46,7 +57,7 @@
           <a class="nav-link" href="{% url 'choose_room' %}">Select Room</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'choose_time' %}">Select Time</a>
+          <a class="nav-link" href="{# {% url 'choose_time' %} #}">Select Time</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'check_reservation' %}">Check Reservation</a>
@@ -93,16 +104,6 @@
       {% block content %}
       {% endblock %}
   </div>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src="/static/js/resume.min.js"></script>
 
 </body>
 
