@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.generic.base import View
 
-from .models import Post, Comment, Room
-from .forms import PostForm, CommentForm, RoomForm
+from .models import Post, Comment, Building
+from .forms import PostForm, CommentForm, ChooseRoomForm
 
 
 # Create your views here.
@@ -132,3 +132,20 @@ def choose_time(request):
 
 def check_reservation(request):
     return render(request, 'check_reservation.html')
+
+
+class ChooseRoom(View):
+    model = Building
+    form_class = ChooseRoomForm
+    template_name = 'choose_room.html'
+
+    def get(self, request):
+        context = self.get_context()
+        return render(request, 'choose_room.html', context)
+
+    def get_context(self):
+        self.context = {}
+        building = Building.objects.all()
+
+        self.context['building'] = building
+        return self.context

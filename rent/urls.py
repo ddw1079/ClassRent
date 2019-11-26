@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.about, name='about'),
     path('accounts/register/', views.registering, name='register'),
 
-    url(r'^rent/choose_room/$', views.choose_room, name='choose_room'),
+    url(r'^rent/choose_room/$', views.ChooseRoom.as_view(), name='choose_room'),
 #    url(r'^rent/choose_room/(?P<pk>\d+)/choose_time/$', views.choose_time, name='choose_time'),
     path('rent/check_reservation/', views.check_reservation, name='check_reservation'),
 

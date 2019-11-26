@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from .models import Post, Comment, Room
+from .models import Post, Comment, Building
 
 
 class PostForm(forms.ModelForm):
@@ -29,8 +29,16 @@ class RegisterForm(UserCreationForm):
         fields = {'username', 'first_name', 'last_name', 'email', 'password1', 'password2',}
 
 
-class RoomForm(forms.ModelForm):
+class ChooseRoomForm(forms.ModelForm):
 
     class MetaL:
-        model = Room
-        fields = {'building', 'floor', 'room', }
+        building = forms.ModelChoiceField(queryset=Building.objects.all())
+
+        model = Building
+        fields = {'building', 'floor', 'room'}
+
+        widget = {
+            'building': forms.Select(attrs={'class': 'form-control form-control-sm', 'id': 'building_selector'}),
+            'floor': forms.Select(attrs={'class': 'form-control form-control-sm', 'id': 'building_selector'}),
+            'room': forms.Select(attrs={'class': 'form-control form-control-sm', 'id': 'building_selector'})
+        }

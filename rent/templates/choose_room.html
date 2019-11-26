@@ -22,11 +22,11 @@
                         <h3 class="mb-0">1. Select Building</h3>
                         <div class="col-12 px-0">
                             <select class="form-control form-control-sm" id="building_selector">
-                                <option></option>
-                                <option>Building 1</option>
-                                <option>Building 2</option>
-                                <option>Building 3</option>
-                                <option>Building 4</option>
+                                <option>------</option>
+                                <option>인문대</option>
+                                <option>제1과기대</option>
+                                <option>제2과기대</option>
+                                <option>석원경상</option>
                             </select>
                         </div>
                     </div>
@@ -35,11 +35,11 @@
                         <h3 class="mb-0">2. Select floor</h3>
                         <div class="col-12 px-0">
                             <select class="form-control form-control-sm" id="floor_selector">
-                                <option></option>
-                                <option>B1</option>
+                                <option>------</option>
                                 <option>F1</option>
                                 <option>F2</option>
                                 <option>F3</option>
+                                <option>F4</option>
                             </select>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <h3 class="mb-0">3. Select Room</h3>
                         <div class="col-12 px-0">
                             <select class="form-control form-control-sm" id="room_selector">
-                                <option></option>
+                                <option>------</option>
                                 <option>101</option>
                                 <option>202</option>
                                 <option>303</option>
@@ -74,13 +74,25 @@
 $(document).ready(function () {
     $("#floor").hide();
     $("#room").hide();
+    $("#building_selector").select2({
+        placeholder: "Building",
+        width: "100%",
+    });
+    $("#floor_selector").select2({
+        placeholder: "Floor",
+        width: "100%",
+    });
+    $("#room_selector").select2({
+        placeholder: "Room",
+        width: "100%",
+    });
 });
 
 $("#building_selector").change(function () {
     var text = $(this).val();
     $("#id_building").text(text);
-    $("#floor").show();
     $("#room").hide();
+    $("#floor").show();
 });
 
 $("#floor_selector").change(function () {
@@ -100,7 +112,7 @@ function resetHandler(){
     $("#id_building").text("Building");
     $("#id_floor").text("Floor");
     $("#id_room").text("Room");
-};
+}
 
 </script>
 
