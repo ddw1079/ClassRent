@@ -3,44 +3,49 @@
 <html lang="ko">
 
 <head>
-{% load static %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>(base)Class Rent</title>
+    <title>Class Rent</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom fonts for this template -->
-  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="/static/css/resume.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="/static/css/resume.min.css" rel="stylesheet">
+    <link href="/static/css/common.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="/static/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet">
 
-  <!-- Plugin JavaScript -->
-  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for this template -->
-  <script src="/static/js/resume.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/static/js/resume.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    <script src="/static/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/static/vendor/bootstrap-datepicker/locales/bootstrap-datepicker.ko.min.js"></script>
 
 </head>
 
 <body id="page-top">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top sideNav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top sideNav" id="nav">
     {% if user.is_authenticated %}
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+    <a class="navbar-brand js-scroll-trigger" href="{% url 'about' %}">
       <span class="d-block d-lg-none">{{ user.username }}</span>
       <span class="d-none d-lg-block">
         <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/static/img/logo_univ_kr.jpg" alt="">
@@ -58,13 +63,13 @@
           <a class="nav-link" href="{% url 'choose_room' %}">Select Room</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{# {% url 'choose_time' %} #}">Select Time</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="{% url 'check_reservation' %}">Check Reservation</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'post' %}">Post</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_draft_list' %}">Your Draft</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -94,7 +99,7 @@
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'post' %}">post</a>
+          <a class="nav-link" href="{% url 'post' %}">Post</a>
         </li>
       </ul>
     </div>
@@ -107,5 +112,10 @@
   </div>
 
 </body>
-
+<script>
+    var loc = window.location.pathname;
+    $('#nav').find('a').each(function(){
+       $(this).toggleClass('active', $(this).attr('href') == loc);
+    });
+</script>
 </html>

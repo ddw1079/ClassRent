@@ -23,11 +23,11 @@ urlpatterns = [
     path('', views.about, name='about'),
     path('accounts/register/', views.registering, name='register'),
 
-    url(r'^rent/choose_room/$', views.ChooseRoom.as_view(), name='choose_room'),
-#    url(r'^rent/choose_room/(?P<pk>\d+)/choose_time/$', views.choose_time, name='choose_time'),
+    # url(r'^rent/choose_room/$', views.ChooseRoom.as_view(), name='choose_room'),
+    path('rent/choose_room/', views.choose_room, name='choose_room'),
     path('rent/check_reservation/', views.check_reservation, name='check_reservation'),
 
-    path('post/', views.post_list, name='post'),
+    path('post/', views.PostListView.as_view(), name='post'),
     path('post/<int:pk>', views.post_detail, name='post_detail'),
     path('post/new', views.post_new, name='post_new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),

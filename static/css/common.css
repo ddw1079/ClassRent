@@ -1,0 +1,7 @@
+#timeTable > tr > td:hover {
+    background-color: #f3e97a;
+}
+i.fas.fa-calendar-alt {
+    position:absolute;
+    z-index:100;
+}

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="section_room">
         <div class="w-100">
             <h2 class="mb-5">Select Room</h2>
             <div class="row">
@@ -15,12 +15,13 @@
                 </div>
             </div>
 
-            <form class="resume-item" method="get" onreset="resetHandler();" action="{# {% url 'choose_time' %} #}">
+            <form class="resume-item js-scroll-trigger" method="get" onreset="resetRoom();" onsubmit="$('#section_time').show()" action="#section_time">
                 <div class="row resume-content d-flex flex-column flex-md-row mb-5">
 
                     <div class="col-md-4 col-sm-12 my-2" id="building">
                         <h3 class="mb-0">1. Select Building</h3>
                         <div class="col-12 px-0">
+                            {# form.building #}
                             <select class="form-control form-control-sm" id="building_selector">
                                 <option>------</option>
                                 <option>인문대</option>
@@ -34,6 +35,7 @@
                     <div class="col-md-4 col-sm-12 my-2" id="floor">
                         <h3 class="mb-0">2. Select floor</h3>
                         <div class="col-12 px-0">
+                            {# form.floor #}
                             <select class="form-control form-control-sm" id="floor_selector">
                                 <option>------</option>
                                 <option>F1</option>
@@ -47,6 +49,7 @@
                     <div class="col-md-4 col-sm-12 my-2" id="room">
                         <h3 class="mb-0">3. Select Room</h3>
                         <div class="col-12 px-0">
+                            {# form.room #}
                             <select class="form-control form-control-sm" id="room_selector">
                                 <option>------</option>
                                 <option>101</option>
@@ -61,19 +64,24 @@
                     <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
                         <button type="reset" class="btn btn-secondary w-100">Reset</button>
                     </div>
-                    <div class="col-lg-1 col-md-12 pl-lg-0 my-2">
+                    <div class="col-lg-1 col-md-12 pl-lg-0 my-2" id="select_room_next_button">
                         <button type="submit" class="btn btn-primary w-100">다음</button>
                     </div>
                 </div>
             </form>
         </div>
     </section>
+    <div id="section_time">
+        {% include 'choose_time.html' %}
+    </div>
 
 <script>
 
 $(document).ready(function () {
     $("#floor").hide();
     $("#room").hide();
+    $("#select_room_next_button").css('visibility','hidden');
+    $("#section_time").hide()
     $("#building_selector").select2({
         placeholder: "Building",
         width: "100%",
@@ -93,6 +101,7 @@ $("#building_selector").change(function () {
     $("#id_building").text(text);
     $("#room").hide();
     $("#floor").show();
+    $("#select_room_next_button").css('visibility','hidden');
 });
 
 $("#floor_selector").change(function () {
@@ -104,14 +113,16 @@ $("#floor_selector").change(function () {
 $("#room_selector").change(function () {
    var text = $(this).val();
    $("#id_room").text(text);
+   $("#select_room_next_button").css('visibility','visible');
 });
 
-function resetHandler(){
+function resetRoom(){
     $("#floor").hide();
     $("#room").hide();
     $("#id_building").text("Building");
     $("#id_floor").text("Floor");
     $("#id_room").text("Room");
+    $("#section_time").hide();
 }
 
 </script>

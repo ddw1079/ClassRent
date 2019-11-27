@@ -22,5 +22,6 @@ urlpatterns = [
 
     url(r'', include('rent.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('summernote/', include('django_summernote.urls')),
 
 ]

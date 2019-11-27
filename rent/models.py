@@ -58,18 +58,10 @@ class Time(models.Model):
     sat = models.BooleanField(default=False)
 
 
-class Building(models.Model):
-    building = models.CharField(null=True, max_length=100)
-
-
-class Floor(models.Model):
-    floor = models.CharField(null=True, max_length=100)
-    building = models.ForeignKey(Building, null=True, on_delete=models.CASCADE)
-
-
-class Room(models.Model):
-    room_name = models.CharField(null=True, max_length=100)
-    floor = models.ForeignKey(Floor, null=True, on_delete=models.CASCADE)
+# class Building(models.Model):
+#     building = models.CharField(null=True, max_length=100)
+#     floor = models.CharField(null=True, max_length=100)
+#     room_name = models.CharField(null=True, max_length=100)
 
 
 #

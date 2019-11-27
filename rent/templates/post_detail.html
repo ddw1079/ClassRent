@@ -17,7 +17,9 @@
     {% endif %}
 
     <h1>{{ post.title }}</h1>
-    <p>{{ post.text|linebreaksbr }}</p>
+    <p>{{ post.text | safe }}</p>
+    <br>
+    <br>
     <hr>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
@@ -27,8 +29,8 @@
                     <a class="btn btn-outline-dark" href="{% url 'comment_remove' pk=comment.pk %}"><i
                             class="fas fa-eraser"></i></a>
                     {% if not comment.approved_comment %}
-                    <a class="btn btn-outline-dark" href="{% url 'comment_approve' pk=comment.pk %}"><i
-                            class="far fa-thumbs-up"></i></a>
+                        <a class="btn btn-outline-dark" href="{% url 'comment_approve' pk=comment.pk %}"><i
+                                class="far fa-thumbs-up"></i></a>
                     {% endif %}
                 </div>
                 <strong>{{ comment.author }}</strong>
@@ -36,10 +38,11 @@
             </div>
         {% endif %}
     {% empty %}
-        <p>Congratulation! You can leave First Comment in this article!</p>
+        {% if post.published_date %}
+            <p>Congratulation! You can leave First Comment in this article!</p>
+        {% endif %}
     {% endfor %}
-
-    {% if user.is_authenticated %}
+    {% if post.published_date %}
         <a class="btn btn-outline-dark" href="{% url 'add_comment_to_post' pk=post.pk %}">Add Comment</a>
     {% endif %}
 </div>
